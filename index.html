@@ -29,9 +29,9 @@
             const lettre = randomLetter();
             const degats = randomIntInclusive(0, 2)
             document.write("- en [", nombre, "-", lettre, "] ")
-            if (degats>0) {
+            if (degats > 0) {
                 document.write("et inflige ", degats, " clix de dégats !<br>")
-            }else {
+            } else {
                 document.write("sans dégats<br>")
             }
         }
@@ -45,7 +45,11 @@
         const defense = randomIntInclusive(0, 3)
         document.write("Réussite : <br>")
         document.write("- Déplacez vous sur une case libre adjacente<br>")
-        document.write("- Modifiez la defense du personnage de -", defense, "<br>")
+        if (defense > 0) {
+            document.write("- Modifiez la defense du personnage de -", defense, "<br>")
+        } else {
+            document.write("- Pas besoin de modifier la defense du personnage ce tour-ci<br>")
+        }
         document.write("Echec :<br>")
         document.write("- appliquez les dégats<br>")
         document.write("Echec si aucune case libre : <br>")
@@ -54,7 +58,9 @@
 
     storm()
 </script>
-<p><button onClick="window.location.reload();">Refresh</button></p>
+<p>
+    <button onClick="window.location.reload();">Refresh</button>
+</p>
 <p><a href="https://github.com/rangzen/heroclix-storm">Project</a></p>
 </body>
 </html>

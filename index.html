@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HeroClix - Storm</title>
+</head>
+<body>
+<script type="text/javascript">
+    function randomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function randomLetter() {
+        const alphabet = "ABCDEFGHIJKLMNOP"
+        return alphabet[Math.floor(Math.random() * alphabet.length)]
+    }
+
+    function storm() {
+        const nbMeteor = 10
+        const esquive = randomIntInclusive(2, 7)
+        const defense = randomIntInclusive(0, 3)
+
+        document.write("Soudain le ciel gronde...<br>")
+        document.write("...et il commence à pleuvoir des météorites !<br>")
+        document.write("<br>")
+        document.write("Des météorites tombent:<br>")
+        for (let i = 0; i < 10; i++) {
+            const nombre = randomIntInclusive(1, 24);
+            const lettre = randomLetter();
+            const degats = randomIntInclusive(1, 2)
+            document.write("- en [", nombre, "-", lettre, "] et inflige ", degats, " clix de dégats !<br>")
+        }
+        document.write("<br>")
+        document.write("Si un personnage se trouve sur une case où tombe un débris, vous pouvez tenter un jet d'esquive sur ", esquive, " ou plus<br>")
+        document.write("<br>")
+        document.write("Réussite : <br>")
+        document.write("- Déplacez vous sur une case libre adjacente<br>")
+        document.write("- Modifiez la defense du personnage de -", defense, "<br>")
+        document.write("Echec :<br>")
+        document.write("- appliquez les dégats<br>")
+        document.write("Echec si aucune case libre : <br>")
+        document.write("- appliquez les dégats<br>")
+    }
+
+    storm()
+</script>
+<button onClick="window.location.reload();">Refresh</button>
+</body>
+</html>

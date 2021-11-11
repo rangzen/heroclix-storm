@@ -18,13 +18,11 @@
     }
 
     function storm() {
-        const nbMeteor = 10
-        const esquive = randomIntInclusive(2, 6)
-        const defense = randomIntInclusive(0, 3)
-
         document.write("Soudain le ciel gronde...<br>")
         document.write("...et il commence à pleuvoir des météorites !<br>")
         document.write("<br>")
+
+        const nbMeteor = 10
         document.write("Des météorites tombent:<br>")
         for (let i = 0; i < 10; i++) {
             const nombre = randomIntInclusive(1, 24);
@@ -33,9 +31,13 @@
             document.write("- en [", nombre, "-", lettre, "] et inflige ", degats, " clix de dégats !<br>")
         }
         document.write("<br>")
+
+        const esquive = randomIntInclusive(2, 6)
         document.write("Si un personnage se trouve sur une case où tombe un débris,<br>")
         document.write("vous pouvez tenter un jet d'esquive sur ", esquive, " ou plus.<br>")
         document.write("<br>")
+
+        const defense = randomIntInclusive(0, 3)
         document.write("Réussite : <br>")
         document.write("- Déplacez vous sur une case libre adjacente<br>")
         document.write("- Modifiez la defense du personnage de -", defense, "<br>")

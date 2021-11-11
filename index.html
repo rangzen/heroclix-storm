@@ -28,7 +28,12 @@
             const nombre = randomIntInclusive(1, 24);
             const lettre = randomLetter();
             const degats = randomIntInclusive(0, 2)
-            document.write("- en [", nombre, "-", lettre, "] et inflige ", degats, " clix de dégats !<br>")
+            document.write("- en [", nombre, "-", lettre, "] ")
+            if (degats>0) {
+                document.write("et inflige ", degats, " clix de dégats !<br>")
+            }else {
+                document.write("sans dégats<br>")
+            }
         }
         document.write("<br>")
 

@@ -52,7 +52,7 @@
     }
 
     function storm() {
-        const nbMeteor = 10
+        const nbMeteor = randomIntInclusive(8, 12)
         const ulm = document.getElementById("damage-list")
         ulm.innerHTML = ""
         for (let i = 0; i < nbMeteor; i++) {

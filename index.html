@@ -12,10 +12,10 @@
     <div class="p-3">
         <h1>HeroClix - Storm</h1>
         <p>Soudain le ciel gronde...<br> ...et il commence à pleuvoir des météorites !</p>
-        <p>Elles tombent :</p>
+        <p>Rapport de l’incident :</p>
         <ol id="damage-list">
-            <li>en [14-L] et inflige 2 clix de dégats !</li>
-            <li>en [21-H] sans dégats</li>
+            <li>[14-L] et inflige 2 clix de dégats !</li>
+            <li>[21-H] sans dégats</li>
         </ol>
         <div class="border p-3 border-primary">
             <p>Si un personnage se trouve sur une case où tombe un débris, vous pouvez tenter un jet d'esquive sur <span
@@ -58,12 +58,21 @@
         for (let i = 0; i < nbMeteor; i++) {
             const nombre = randomIntInclusive(1, 24);
             const lettre = randomLetter();
-            const degats = randomIntInclusive(0, 2)
-            let d = "en [" + nombre + "-" + lettre + "] "
-            if (degats > 0) {
-                d += "et inflige " + degats + " clix de dégats !"
-            } else {
-                d += "sans dégats"
+            const degats = randomIntInclusive(0, 4)
+            let d = "[" + nombre + "-" + lettre + "], "
+            switch (degats) {
+                case 1:
+                case 2:
+                    d += degats + " clix de dégats !"
+                    break
+                case 3:
+                    d += "un object léger bouche le passage"
+                    break
+                case 4:
+                    d += "le terrain est entravé"
+                    break
+                default:
+                    d += "désagrégée sans dégats"
             }
             const lim = document.createElement("li")
             lim.appendChild(document.createTextNode(d))

@@ -1,5 +1,5 @@
 # heroclix-storm
 
-For my Bro and les gélatineux :)
+Naive translation of a bash file from Rod.
 
 See it live at https://rangzen.github.io/heroclix-storm/

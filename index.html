@@ -5,6 +5,34 @@
     <title>HeroClix - Storm</title>
 </head>
 <body>
+<main>
+    <div>
+        <p>Soudain le ciel gronde...<br> ...et il commence à pleuvoir des météorites !</p>
+        <p>Des météorites tombent :</p>
+        <ol id="damage-list">
+            <li>en [14-L] et inflige 2 clix de dégats !</li>
+            <li>en [21-H] sans dégats</li>
+        </ol>
+        <p>Si un personnage se trouve sur une case où tombe un débris,<br>vous pouvez tenter un jet d'esquive sur <span
+                id="esquive">esquive</span> ou plus.</p>
+        <div>
+            <p>Réussite :</p>
+            <ul id="success-list">
+                <li>déplacez vous sur une case libre adjacente</li>
+            </ul>
+            <p>Echec :</p>
+            <ul>
+                <li>appliquez les dégats</li>
+            </ul>
+            <p>Echec si aucune case libre :</p>
+            <ul>
+                <li>appliquez les dégats</li>
+            </ul>
+        </div>
+        <button onClick="window.location.reload();">Refresh</button>
+        <p><a href="https://github.com/rangzen/heroclix-storm">Github</a></p>
+    </div>
+</main>
 <script type="text/javascript">
     function randomIntInclusive(min, max) {
         min = Math.ceil(min);
@@ -18,49 +46,40 @@
     }
 
     function storm() {
-        document.write("Soudain le ciel gronde...<br>")
-        document.write("...et il commence à pleuvoir des météorites !<br>")
-        document.write("<br>")
-
         const nbMeteor = 10
-        document.write("Des météorites tombent:<br>")
+        const ulm = document.getElementById("damage-list")
+        ulm.innerHTML = ""
         for (let i = 0; i < nbMeteor; i++) {
             const nombre = randomIntInclusive(1, 24);
             const lettre = randomLetter();
             const degats = randomIntInclusive(0, 2)
-            document.write("- en [", nombre, "-", lettre, "] ")
+            let d = "en [" + nombre + "-" + lettre + "] "
             if (degats > 0) {
-                document.write("et inflige ", degats, " clix de dégats !<br>")
+                d += "et inflige " + degats + " clix de dégats !"
             } else {
-                document.write("sans dégats<br>")
+                d += "sans dégats"
             }
+            const lim = document.createElement("li")
+            lim.appendChild(document.createTextNode(d))
+            ulm.appendChild(lim)
         }
-        document.write("<br>")
 
         const esquive = randomIntInclusive(2, 4)
-        document.write("Si un personnage se trouve sur une case où tombe un débris,<br>")
-        document.write("vous pouvez tenter un jet d'esquive sur ", esquive, " ou plus.<br>")
-        document.write("<br>")
+        const e = document.getElementById("esquive");
+        e.textContent = esquive
 
         const defense = randomIntInclusive(0, 3)
-        document.write("Réussite : <br>")
-        document.write("- Déplacez vous sur une case libre adjacente<br>")
+        const uld = document.getElementById("success-list");
+        const lid = document.createElement("li");
         if (defense > 0) {
-            document.write("- Modifiez la defense du personnage de -", defense, "<br>")
+            lid.appendChild(document.createTextNode("modifiez la defense du personnage de -" + defense))
         } else {
-            document.write("- Pas besoin de modifier la defense du personnage ce tour-ci<br>")
+            lid.appendChild(document.createTextNode("pas besoin de modifier la defense du personnage ce tour-ci"))
         }
-        document.write("Echec :<br>")
-        document.write("- appliquez les dégats<br>")
-        document.write("Echec si aucune case libre : <br>")
-        document.write("- appliquez les dégats<br>")
+        uld.appendChild(lid)
     }
 
     storm()
 </script>
-<p>
-    <button onClick="window.location.reload();">Refresh</button>
-</p>
-<p><a href="https://github.com/rangzen/heroclix-storm">Project</a></p>
 </body>
 </html>

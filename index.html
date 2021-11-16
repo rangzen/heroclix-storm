@@ -55,35 +55,44 @@
         const nbMeteor = randomIntInclusive(8, 12)
         const ulm = document.getElementById("damage-list")
         ulm.innerHTML = ""
+        var meteors = []
         for (let i = 0; i < nbMeteor; i++) {
-            const nombre = randomIntInclusive(1, 24);
-            const lettre = randomLetter();
-            const degats = randomIntInclusive(1, 10)
-            let d = "[" + nombre + "-" + lettre + "], "
-            switch (degats) {
+            const number = randomIntInclusive(1, 24);
+            const letter = randomLetter();
+            const damage = randomIntInclusive(1, 10)
+            let dmgText = ""
+            switch (damage) {
                 case 1:
                 case 2:
                 case 3:
                 case 4:
                 case 5:
-                    d += "1 dégats !"
+                    dmgText += "1 dégats !"
                     break
                 case 6:
                 case 7:
                 case 8:
-                    d += "2 dégats !"
+                    dmgText += "2 dégats !"
                     break
                 case 9:
-                    d += "générez un objet léger sur la case"
+                    dmgText += "générez un objet léger sur la case"
                     break
                 case 10:
-                    d += "générez un terrain entravant sur la case"
+                    dmgText += "générez un terrain entravant sur la case"
                     break
                 default:
-                    d += "Fiat Lux"
+                    dmgText += "Fiat Lux"
             }
+            meteors.push({n: number, l: letter, d: dmgText})
+        }
+        meteors.sort(function (a, b) {
+            // n * 1000 + l to sort by number then by letter
+            return (a.n * 1000 + a.l.charCodeAt(0)) - (b.n * 1000 + b.l.charCodeAt(0))
+        })
+        for (let i = 0; i < meteors.length; i++) {
+            let meteor = meteors[i];
             const lim = document.createElement("li")
-            lim.appendChild(document.createTextNode(d))
+            lim.appendChild(document.createTextNode("en [" + meteor.n + "-" + meteor.l + "], " + meteor.d))
             ulm.appendChild(lim)
         }
 
